@@ -15,8 +15,8 @@ todos las subexceptions como `ClassNotFoundException, IOException, SQLException,
 ![exception hierarchy](https://media.geeksforgeeks.org/wp-content/uploads/Exception-in-java1.png)
 
 
-<mark style="background: #FF5582A6;">duda:</mark> algunos exceptions son extensiones de otros exceptions y esos exceptions a su vez son extensiones de `Throwable` 
-<mark style="background: #FF5582A6;">duda:</mark> `Throwable` es un implement de la clase `Serializable` y no de un objeto
+duda: algunos exceptions son extensiones de otros exceptions y esos exceptions a su vez son extensiones de `Throwable` 
+duda: `Throwable` es un implement de la clase `Serializable` y no de un objeto
 
 #### Tipos de exceptions
 
