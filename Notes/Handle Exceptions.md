@@ -1,106 +1,49 @@
+sources: 
+- [Core Java Programming](https://www.techguruspeaks.com/home/core-java-programming/java-exception-handling/)
+- [Exceptions in Java](https://www.geeksforgeeks.org/exceptions-in-java/)
+- [Flow control in try catch finally in Java](https://www.geeksforgeeks.org/flow-control-in-try-catch-finally-in-java/)
 cuando una excepcion ocurre dentro de un metodo se crea un objeto, aka. exception object
 
-#### Donde se pueden aplicar las exceptions / Cuando ocurren las exceptions
-- Invalid user input
-- Device failure
-- Loss of network connection
-- Physical limitations (out of disk memory)
-- Code errors
-- Opening an unavailable file
+### Exception Hierarchy
 
-#### Exception Hierarchy
+Todo tipo de excepciones son subclases de **java.lang.Throwable** que a su vez es una subclase de **java.lang.Object**, las excepciones de `Thowable` se dividen en dos ramas: **java.lang.Exception** y **java.lang.Error**
 
-todos las subexceptions como `ClassNotFoundException, IOException, SQLException, RemoteException, RuntimeException, etc.` son subclases "extensions" de la clase `Throwable` 
+![figure 1.1](https://miro.medium.com/v2/resize:fit:720/format:webp/1*_jXNZuPLKMTQ5IKjBzb8jA.png)
 
-![exception hierarchy](https://media.geeksforgeeks.org/wp-content/uploads/Exception-in-java1.png)
+![figure 1.2](https://www3.ntu.edu.sg/home/ehchua/programming/java/images/Exception_Classes.png)
 
+##### *java.lang.Exception*
+Todas las excepciones de esta clase *deberian* ser capturadas por los programadores, ademas esta clase tambien puede ser usada para crear excepciones personalizadas.
 
-duda: algunos exceptions son extensiones de otros exceptions y esos exceptions a su vez son extensiones de `Throwable`
-duda: `Throwable` es un implement de la clase `Serializable` y no de un objeto
+##### *java.lang.Error*
+Estas clase contiene **errores internos del sistema** como LinkageError, VirtualMachineError, etc.
 
-#### Tipos de exceptions
+### Types of exceptions
+Las excepciones tambien se pueden categorizar en dos tipos: **Checked Exceptions** y **Unchecked Exceptions**
 
-![types exceptions](https://media.geeksforgeeks.org/wp-content/uploads/20220120111809/Group21-660x330.jpg)
+##### *Checked Exceptions*
+El compilador comprobará que hemos capturado la excepcion. Checked Exceptions obliga a los programadores a lidiar con la excepción que puede lanzar la API, ya sea usando `catch` o reenviándola hacia afuera con `throws`.
 
-### Built-in Exceptions:
-son exceptions que vienen en la libreria de java, se dividen en:
+##### *Uncheked Exceptions*
+En este tipo entran las excepciones de la clase **java.lang.Error** y de la subclase **java.lang.RuntimeException** (de la clase **java.lang.Exception**) 
 
-###### Checked Exceptions
-son exceptions que el compilador de java obliga a que se capturen, este tipo de exceptions son subclases de `Exception` o subclases directos de `Throwable` y tienen que capturar utilizando `try-catch` o declarando `throws` en el metodo.
-
-###### Uncheked Exceptions
-son exceptions que el compilador de java no verifica/captura, este tipo de exceptions sob subclases de la clase `RuntimeException` o `Error` ocurren por un error en la logica del codigo y pueden ser capturadas en el codigo utilizando `try-catch` o declarando `throws` en el metodo.
-
-### User-Defined Exceptions:
-son exceptions que los programadores crean para captura un tipo de exception especifico para sus programas.
-
-###### *Example:*
-~~~java
-// A Class that represents use-defined exception
-
-class MyException extends Exception {
-	public MyException(String s)
-	{
-		// Call constructor of parent Exception
-		super(s);
-	}
-}
-
-// A Class that uses above MyException
-public class Main {
-	// Driver Program
-	public static void main(String args[])
-	{
-		try {
-			// Throw an object of user defined exception
-			throw new MyException("GeeksGeeks");
-		}
-		catch (MyException ex) {
-			System.out.println("Caught");
-
-			// Print the message from MyException object
-			System.out.println(ex.getMessage());
-		}
-	}
-}
-~~~
-
-
-
-### Methods to print the Exception information:
+#### Show information about the Exception
+para imprimir o mostrar informacion sobre las excepciones se pueden usar los siguientes metodos:
 - `printStackTrace()` : imprime la informacion de la exception incluyendo el numero de la linea donde se produjo y el nombre de la clase que contiene la exception.
 - `toString()` : imprime la informacion de la exception en forma string.
 - `getMessage()` : imprime solo la descripcion de la exception.
 
-###### *Example:*
+### Handle Exceptions with keywords
 
-~~~java
-//program to print the exception information using printStackTrace() method
+hay cinco [keywords](_Keywords) para capturar/manejar las excepciones:
 
-import java.io.*;
+- try:
+- catch:
+- finally:
+- throw:
+- throws:
 
-class GFG {
-	public static void main (String[] args) {
-		int a=5;
-		int b=0;
-		try{
-			System.out.println(a/b);
-		}
-		catch(ArithmeticException e){
-			/* java.lang.ArithmeticException: / by zero
-			at GFG.main(File.java:10) */
-			e.printStackTrace();
-			/* java.lang.ArithmeticException: / by zero */
-			System.out.println(e.toString());
-			/* / by zero */
-			System.out.println(e.getMessage());
-		}
-	}
-}
-
-~~~
+### How JVM handle the exceptions
 
 
-
-### How does JVM handle an Exception
 
