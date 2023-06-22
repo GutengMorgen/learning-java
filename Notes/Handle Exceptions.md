@@ -2,7 +2,8 @@ sources:
 - [Core Java Programming](https://www.techguruspeaks.com/home/core-java-programming/java-exception-handling/)
 - [Exceptions in Java](https://www.geeksforgeeks.org/exceptions-in-java/)
 - [Flow control in try catch finally in Java](https://www.geeksforgeeks.org/flow-control-in-try-catch-finally-in-java/)
-cuando una excepcion ocurre dentro de un metodo se crea un objeto, aka. exception object
+
+Una excepción es un evento o condición anormal que ocurre durante la ejecución de un programa e interrumpe el flujo normal de ejecución. [Explanations of common Java exceptions](https://rymden.nu/exceptions.html)
 
 ### Exception Hierarchy
 
@@ -145,9 +146,17 @@ public void methodD() throws XxxException, YyyException {
 - `getMessage()` : imprime solo la descripcion de la exception.
 
 ### How JVM handle the exceptions
-Estos son algunos paso que sigue el compilador o JVM cuando ocurre una excepcion:
+Estos son los procesos generales que hace el JVM cuando ocurre una excepcion:
 
-- crea un objeto con toda la informacion de la excepcion, aka exceptions object
-- usa el call stack para encontrar un metodo apropiado que capture la excepcion
-- da el excepcion object a ese metodo para ejecutarlo, si no encuentra un metodo que capture la excepcion entonces se ejecuta el default exception handling del JVM para capturar la excepcion y terminar el programa.
+- Se crea el Call Stack: *El call stack es una estructura de datos en la que se registran las llamadas a los métodos en la pila de ejecución del programa. Cada vez que se realiza una llamada a un método, se agrega una entrada en la parte superior de la pila de llamadas, y cuando se completa la ejecución del método, se elimina esa entrada de la pila. Cuando se produce una excepción, el JVM detiene la ejecución normal del programa y busca de un capturador que pueda manejar la excepción. Durante este proceso de búsqueda, el JVM utiliza la información almacenada en el call stack para determinar qué métodos se han llamado y en qué orden.*
+- Busca un capturador para la excepcion: El JVM comenzará a ejecutarse desde la parte superior del call stack. Si el método tiene una excepción, JVM comprueba si el método está manejando esa excepción o no, si el metodo lo hace, entonces se *creara un objecto (aka Exception Object) que contiene toda la informacion de la excepcion recopilada del call stack*. Si el metodo no contiene un capturador apropiado entonces JVM termina y elimina el metodo del call satck
+- Propagación de la excepción: Ahora JVM comprueba el método de llamada si ha manejado la excepción o no. Si no, entonces también termina el método de llamada. Este proceso continúa, y si **main()** (que es el ultimo metodo en el call stack) tampoco maneja la excepción, la JVM termina y elimina la entrada **main()** de la pila.
+- Default Exception Handling: El responsable de capturar/manejar la excepcion ahora es de JVM, para hacerlo creara un Default Exception Handler que a su vez *creara un objecto (aka Exception Object) que contiene toda la informacion de la excepcion recopilada del call stack*, luego la imprimira en la consola y terminara el programa.
 
+![exception propagation](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*uUPVEjDhW-lfmmMdPMt-8w.png)
+
+Resources: [beginnersbook](https://beginnersbook.com/2022/09/exception-propagation-in-java-with-examples/) [javatpoint](https://www.javatpoint.com/exception-propagation) [interviewnoodle](https://interviewnoodle.com/exception-in-java-89a0b41e0c45) [techguruspeaks](https://www.techguruspeaks.com/exception-propagation-in-java/) 
+
+### Chained Exceptions
+
+Chained Exceptions es una forma de encadenar/relacionar una excepcion con otra, e.j se pude usar para que una excepcion describa la causa de otra excepcion. Esto es útil cuando se desea propagar información sobre la causa original de una excepción.
