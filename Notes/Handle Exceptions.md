@@ -160,3 +160,43 @@ Resources: [beginnersbook](https://beginnersbook.com/2022/09/exception-propagati
 ### Chained Exceptions
 
 Chained Exceptions es una forma de encadenar/relacionar una excepcion con otra, e.j se pude usar para que una excepcion describa la causa de otra excepcion. Esto es útil cuando se desea propagar información sobre la causa original de una excepción.
+
+Métodos de clase Throwable que admiten excepciones encadenadas en java :
+
+1. `getCause()` method : Este método devuelve la causa real de una excepción, si no la hay devuelve null.
+2. `initCause(Throwable cause)` method : Este método establece la causa de la excepción de llamada.
+
+Por ejemplo, considere una situación en la que un método arroja una ArithmeticException debido a un intento de dividir por cero, pero la causa real de la excepción fue un error de E/S que causó que el divisor fuera cero. El método arrojará solo ArithmeticException a la persona que llama. Por lo tanto, la persona que llama no llegaría a conocer la causa real de la excepción. La excepción encadenada se usa en este tipo de situaciones. Constructores De clase Throwable Que admiten excepciones encadenadas en java :
+
+~~~java
+// Java program to demonstrate working of chained exceptions
+public class ExceptionHandling {
+	public static void main(String[] args) {
+		try {
+			// Creating an exception
+			NumberFormatException ex = new NumberFormatException("Exception");
+
+			// Setting a cause of the exception
+			ex.initCause(new NullPointerException( "This is actual cause of the exception"));
+
+			// Throwing an exception with cause.
+			throw ex;
+		}
+		catch(NumberFormatException ex) {
+			// displaying the exception
+			System.out.println(ex);
+
+			// Getting the actual cause of the exception
+			System.out.println(ex.getCause());
+		}
+	}
+}
+
+~~~
+
+Las excepciones encadenadas, también conocidas como excepciones anidadas, le permiten asociar una causa con una excepción en Java. Esto es útil cuando desea propagar información sobre la causa original de una excepción.
+
+more information: [geeksforgeeks](https://www.geeksforgeeks.org/chained-exceptions-java/) [docs.oracle](https://docs.oracle.com/javase/tutorial/essential/exceptions/chained.html) [techguruspeaks](https://www.techguruspeaks.com/chained-exceptions/)
+
+
+
