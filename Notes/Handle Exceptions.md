@@ -198,5 +198,34 @@ Las excepciones encadenadas, también conocidas como excepciones anidadas, le pe
 
 more information: [geeksforgeeks](https://www.geeksforgeeks.org/chained-exceptions-java/) [docs.oracle](https://docs.oracle.com/javase/tutorial/essential/exceptions/chained.html) [techguruspeaks](https://www.techguruspeaks.com/chained-exceptions/)
 
+### Java throws with method overriding
 
+idk
 
+more information: [javatpoint](https://www.javatpoint.com/exception-handling-with-method-overriding) [techguruspeaks](https://www.techguruspeaks.com/java-throws-with-method-overriding/) [geeksforgeeks](https://www.geeksforgeeks.org/exception-handling-with-method-overriding-in-java/) 
+
+### try-with-resources
+El try-with-resources es una declaración introducida en Java 7 que permite declarar y utilizar recursos en un bloque try con la garantía de que los recursos se cerrarán al finalizar la ejecución del bloque. Un recurso es un objeto que debe cerrarse una vez que el programa ha terminado de usarlo, como por ejemplo un archivo o una conexión a un socket.
+
+Para utilizar el try-with-resources, se deben seguir los siguientes pasos:
+
+1. Declarar el recurso dentro de los paréntesis después de la palabra clave try.
+2. Utilizar el recurso dentro del bloque try.
+3. No es necesario cerrar explícitamente el recurso dentro del bloque try, ya que esto se hará automáticamente al finalizar la ejecución del bloque.
+
+Aquí tienes un ejemplo que muestra cómo utilizar el try-with-resources para leer la primera línea de un archivo:
+
+~~~java
+static String readFirstLineFromFile(String path) throws IOException {
+    try (FileReader fr = new FileReader(path);
+         BufferedReader br = new BufferedReader(fr)) {
+        return br.readLine();
+    }
+}
+~~~
+
+En este ejemplo, se declaran dos recursos, `FileReader` y `BufferedReader`, dentro del bloque try-with-resources. Estos recursos se cerrarán automáticamente al finalizar la ejecución del bloque, incluso si se produce una excepción.
+
+Antes de Java 7, era necesario utilizar un bloque finally para asegurarse de que los recursos se cerraran, incluso en caso de excepciones. Sin embargo, el uso del try-with-resources simplifica el código y garantiza que los recursos se cierren correctamente, incluso en caso de excepciones.
+
+more info: [docs.oracle](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) [geeksforgeeks](https://www.geeksforgeeks.org/try-with-resources-feature-in-java/) 
