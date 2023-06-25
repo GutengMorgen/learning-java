@@ -20,8 +20,12 @@ The old file API is used in a ton of older projects, nevertheless, `_java.nio.f
 - Watching Files & Directories
 - In-Memory File Systems
 
+### File Class
+The fi rst class that we will discuss is one of the most commonly used in the java.io API, the java.io.File class, or File class for short. The File class is used to read information about existing fi les and directories, list the contents of a directory, and create/delete fi les and directories. An instance of a File class represents the pathname of a particular fi le or directory on the fi le system. The File class cannot read or write data within a fi le, although it can be passed as a reference to many stream classes to read or write data, as you shall see in the next section.
+
+
 ### File Object
-**In Java, files and directories are represented with one File object**
+**In Java, *files* and *directories* are represented with one File object**
 
 A `File` object **holds** information about a disk file or a disk directory. It does not contain the data that the file holds. **It is an object that holds methods that affect a particular file or directory**.
 
@@ -55,7 +59,6 @@ Both relative and absolute path names may be used with the `File` constructor.
 - **getCanonicalPath()**: A canonical path is simply a unique absolute path *e.g. the canonical path of pdf-sample.pdf is: “D:\sample-documents\pdf-sample.pdf”*
 	- Normally, this method resolves the “.” and “..” characters and return the final path, it’s efficient for comparing 2 file paths.
 
-
 ### Useful Methods
 
 |Modifier and Type|Method|Description|Description 2|
@@ -81,14 +84,120 @@ Both relative and absolute path names may be used with the `File` constructor.
 |String|getPath()||Returns the path name.|
 |long|length()||Returns the length of a file.|
 
+
+### How to read and write content
+In general, there are two ways of working with reading and writing files in Java.
+
+1. **InputStream and OutputStream.**  
+    The Stream classes are used for inputting and outputting all types of binary or byte data.
+2. **Reader and Writer.**  
+    The Reader and Writer classes are used for inputting and outputting characters and strings. Basically, text files.
+
+![io](https://miro.medium.com/v2/resize:fit:720/format:webp/1*KL76PVciQP_5uuqF1XnKgg.png)
+
+**Both InputStream/OutoutStream and Reader/Writer use streams in the background** so...
+
+### How works stream
+*The main idea of the stream is to read/write piece by piece*
+
+*Note that the **I/O streams** that we discuss in this chapter are data streams and completely unrelated to the new **Stream API** that you saw in Chapter 4 , “Functional Programming.”* - OCP Oracle
+
+Streams should be conceptually thought of as a long, nearly never-ending “stream of water” with data presented one “wave” at a time.
+
+![[Pasted image 20230624200331.png]]
+
+Each type of stream segments data into a “wave” or “block” in a particular way. For example, **some stream classes read or write data as individual byte values**. Other **stream classes read or write individual characters or strings of characters**. On top of that, **some stream classes read or write groups of bytes or characters at a time, specifically those with the word Buffered in their name.**
+
+*The reasoning behind more high-order streams is for convenience as well as performance.
+For example, writing a file one byte at a time is time consuming and slow in practice because the round-trip between the Java application and the file system is relatively expensive. By utilizing a BufferedOutputStream, the Java application can write a large chunk of bytes at a time, reducing the round-trips and drastically improving performance.*
+
+Java provides three **built-in streams**, System.in, System.err, and System.out
+
+#### Byte Streams and Character Streams
+Java defines two types of streams: **byte** and **character**.
+- **Byte streams** (aka.  Streams) provide a convenient means for handling input and output of **all types of binary or byte data**. Byte streams are used, for example, when reading or writing binary data.
+- **Character streams** (aka. Readers/Writes) provide a convenient means for handling input and output of **only character and String data**. They use Unicode and, therefore, can be internationalized.
+
+*At the lowest level, all I/O is still byte-oriented. The character streams simply provide a convenient and efficient means for handling characters.*
+
+###### why use character streams
+Because *"... the reader/writer classes, as they are specifically focused on managing character and string data. ..."* - OCP Oracle
+
+#### Input and Output
+**Most Input stream classes have a corresponding Output class and vice versa.** For example, the FileOutputStream class writes data that can be read by a FileInputStream.
+
+**If you understand the features of a particular Input or Output stream class, you should naturally know what its complementary class does.**
+
+It follows, then, that most Reader classes have a corresponding Writer class. For example, the FileWriter class writes data that can be read by a FileReader. 
+
+There are exceptions to this rule. For the exam, you should know that PrintWriter has no accompanying PrintReader class. Likewise, the PrintStream class has no corresponding InputStream class. We will discuss these classes later this chapter.
+
+#### The byte stream classes
+Byte streams are defined by using two class hierarchies. At the top are two abstract classes: `InputStream` and `OutputStream`. Both define several key methods that the other stream classes implement. Two of the most important are **read( )** and **write( )**, which, respectively, read and write bytes of data. Each has a form that is abstract and must be overridden by derived stream classes.
+
+#### The character stream classes
+Character streams are defined by using two class hierarchies. At the top are two abstract classes: `Reader` and `Writer`. **These abstract classes handle Unicode character streams.** Both define several key methods that the other stream classes implement. Two of the most important methods are **read( )** and **write( )**, which read and write characters of data, respectively.
+
+
+### Low-Level vs. High-Level Streams
+It is possible to segment java.io API into **low-level** and **high-level** streams.
+- A low-level stream connects directly with the source of the data, such as a file, an array, or a String. Low-level streams process the raw data or resource and are accessed in a direct and unfiltered manner. For example, a FileInputStream is a class that reads file data one byte at a time. 
+- A high-level stream is built on top of another stream using wrapping. Wrapping is the process by which an instance is passed to the constructor of another class and operations on the resulting instance are filtered and applied to the original instance.
+
+For example, take a look at the FileWriter and BufferedWriter objects in the following sample code: 
+```java
+try (BufferedReader bufferedReader = new BufferedReader( new FileReader("zoo-data.txt"))) {
+	System.out.println(bufferedReader.readLine()); 
+}
+```
+
+ In this example, FileReader is the low-level stream reader, whereas BufferedReader is the high-level stream that takes a FileReader as input. 
+ 
+**High-level streams can take other high-level streams as input.** For example, although the following code might seem a little odd at first, the style of wrapping a stream is quite common in practice:
+```java
+try (ObjectInputStream objectStream = new ObjectInputStream( new BufferedInputStream( new FileInputStream("zoo-data.txt")))) {
+	System.out.println(objectStream.readObject());
+}
+```
+
+In this example, FileInputStream is the low-level stream that interacts directly with the file, which is wrapped by a high-level BufferedInputStream to improve performance. Finally, the entire object is wrapped by a high-level ObjectInputStream, which allows us to filter the data as Java objects.
+
+###### Why use buffers streams when working with Files
+The reason that **Buffered streams tend to perform so well in practice is that file systems are geared for sequential disk access.** The more sequential bytes you read at a time, the fewer round-trips between the Java process and the file system, improving the access of your application. For example, accessing 16 sequential bytes is a lot faster than accessing 16 bytes spread across the hard drive.
+
+### Review of java.io Class Properties
+- A class with the word InputStream or OutputStream in its name is used for reading or writing binary data, respectively.
+- A class with the word Reader or Writer in its name is used for reading or writing character or string data, respectively.
+- Most, but not all, input classes have a corresponding output class.
+- A low-level stream connects directly with the source of the data.
+- A high-level stream is built on top of another stream using wrapping.
+- A class with Buffered in its name reads or writes data in groups of bytes or characters and often improves performance in sequential file systems.
+
+When wrapping a stream you can mix and match only types that inherit from the same abstract parent stream.
+
+![[Pasted image 20230624225358.png]]
+
+### Flushing the Stream
+When data is written to an OutputStream, the underlying operating system does not necessarily guarantee that the data will make it to the file immediately. In many operating systems, the data may be cached in memory, with a write occurring only after a temporary cache is filled or after some amount of time has passed. If the data is cached in memory and the application terminates unexpectedly, the data would be lost, because it was never written to the file system. To address this, Java provides a flush() method, which requests that all accumulated data be written immediately to disk.
+The flush() method helps reduce the amount of data lost if the application terminates unexpectedly. It is not without cost, though. Each time it is used, it may cause a noticeable delay in the application, especially for large files.
+
+### Skipping over Data
+The InputStream and Reader classes also include a skip(long) method, which as you might expect skips over a certain number of bytes. It returns a long value, which indicates the number of bytes that were actually skipped. If the return value is zero or negative, such as if the end of the stream was reached, no bytes were skipped. Assume that we have an InputStream instance whose next values are TIGERS. Consider the following code snippet: 
+```java
+InputStream is = ... System.out.print ((char)is.read()); is.skip(2) is.read(); System.out.print((char)is.read()); System.out.print((char)is.read()); 
+```
+The code will read one character, T, skip two characters, IG, and then read three more characters, ERS, only the last two of which are printed to the user, which results in the following output. TRS You may notice in this example that calling the skip() operation is equivalent to calling read() and discarding the output. 
+For skipping a handful of bytes, there is virtually no difference. On the other hand, **for skipping a large number of bytes, skip() will often be faster, because it will use arrays to read the data.**
+
+
+### How works InputStream and OutputStream
+
+### How works Read and Write
+
+### Some notes about try-with-resources
+
 ### Watching Files & Directories
-
-
 ### In-Memory File Systems
-
-### How stream works in File api
-
-
 
 ### Footer
 duda: como es la estructura de un file object, diferencias entre un file object y un file class
@@ -99,4 +208,5 @@ Resources:
 - [chortle.ccsu.edu](https://chortle.ccsu.edu/java5/Notes/chap87/ch87_4.html)
 - [javatpoint](https://www.javatpoint.com/java-file-class)
 - [marcobehler](https://www.marcobehler.com/guides/java-files#_in_memory_file_systems)
+- [medium](https://beknazarsuranchiyev.medium.com/how-to-work-with-files-in-java-5f5d76012d63)
 - 
