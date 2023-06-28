@@ -1,5 +1,7 @@
 package com.testing;
 
+import java.io.IOException;
+
 // import java.nio.file.Files;
 // import java.io.File;
 // import java.io.InputStream;
@@ -27,9 +29,31 @@ public class packages {
          */
 
         // out.print(file.getPath());
-        System.getProperty("line.separator");
+        // System.getProperty("line.separator");
 
         // Object foo = new Object();
 
+        try {
+
+            nigger();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        packages ge = new packages();
+        ge.sfaewfaewtr();
+    }
+
+    public void sfaewfaewtr() {
+        System.out.println("hello");
+    }
+
+    public static void nigger() throws IOException {
+        // System.out.print("hello world");
+        double n = Math.random();
+
+        if (n < 0.3) {
+            throw new IOException("explicit 1");
+        }
     }
 }
