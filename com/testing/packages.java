@@ -53,6 +53,7 @@ public class packages {
         double n = Math.random();
 
         if (n < 0.3) {
+            // LinkedList myll =
             throw new IOException("explicit 1");
         }
     }
