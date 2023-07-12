@@ -1,0 +1,38 @@
+{
+	"nodes":[
+		{"type":"text","text":"RAUTER","id":"46b57e7195762bc9","x":-420,"y":-10,"width":126,"height":50},
+		{"type":"text","text":"RAUTER","id":"f39267bd90cbda38","x":-420,"y":-180,"width":126,"height":50},
+		{"type":"text","text":"RAUTER","id":"9c72b9eeb58a28a9","x":-420,"y":160,"width":126,"height":50},
+		{"type":"text","text":"PC","id":"94932a93a468ed9d","x":-517,"y":340,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"8d8eae2622ac1c50","x":-279,"y":340,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"56c19a92159b4cb4","x":-399,"y":390,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"23a48040179ef8ad","x":-294,"y":-340,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"ed49e689b0c95868","x":-399,"y":-390,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"1b6c17d8f5d19efb","x":-504,"y":-340,"width":84,"height":50},
+		{"type":"text","text":"RAUTER","id":"30c7554edcbd946f","x":-667,"y":-10,"width":126,"height":50},
+		{"type":"text","text":"PC","id":"78b10f173e1a2ffd","x":-920,"y":-10,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"6dd613ce4450e9f9","x":-836,"y":85,"width":84,"height":50},
+		{"type":"text","text":"PC","id":"0829a089456e4a4c","x":-836,"y":-110,"width":84,"height":50},
+		{"type":"text","text":"MODEM","id":"fe5df8b2dca8f87b","x":-2,"y":-10,"width":128,"height":60},
+		{"type":"text","text":"Internet Service Provider (ISP)\n","id":"2fa8bd126cf552b7","x":126,"y":185,"width":280,"height":50},
+		{"id":"bbca6f165a4aaf5b","x":-685,"y":552,"width":631,"height":633,"type":"text","text":"# Glosary:\n\n - Network: A network is a group of connected computers that are able to send data to each other.\n - Internet: The Internet is a vast, sprawling collection of networks that connect to each other. In fact, the word \"Internet\" could be said to come from this concept: _inter_connected _net_works.\n"},
+		{"id":"338098151278a742","x":16,"y":-215,"width":322,"height":60,"type":"text","text":"concepto: cables de radios, tv, luz, etc"}
+	],
+	"edges":[
+		{"id":"d59a73816c70cd61","fromNode":"ed49e689b0c95868","fromSide":"bottom","toNode":"f39267bd90cbda38","toSide":"top","label":"cables"},
+		{"id":"a3fc17ef5b934af4","fromNode":"46b57e7195762bc9","fromSide":"right","toNode":"fe5df8b2dca8f87b","toSide":"left","label":"cables?"},
+		{"id":"b34e871a30ea0803","fromNode":"fe5df8b2dca8f87b","fromSide":"bottom","toNode":"2fa8bd126cf552b7","toSide":"top","label":"cables submarinos"},
+		{"id":"cbd4bf5fd7695139","fromNode":"23a48040179ef8ad","fromSide":"bottom","toNode":"f39267bd90cbda38","toSide":"top"},
+		{"id":"1941737ce0c93997","fromNode":"1b6c17d8f5d19efb","fromSide":"bottom","toNode":"f39267bd90cbda38","toSide":"top"},
+		{"id":"17da60c6f61f2662","fromNode":"56c19a92159b4cb4","fromSide":"top","toNode":"9c72b9eeb58a28a9","toSide":"bottom","label":"cables"},
+		{"id":"4c335927b727aa88","fromNode":"94932a93a468ed9d","fromSide":"top","toNode":"9c72b9eeb58a28a9","toSide":"bottom"},
+		{"id":"1a9db0821e93ebbc","fromNode":"46b57e7195762bc9","fromSide":"top","toNode":"f39267bd90cbda38","toSide":"bottom","fromEnd":"arrow"},
+		{"id":"a5b7bc6f2d7d81b5","fromNode":"8d8eae2622ac1c50","fromSide":"top","toNode":"9c72b9eeb58a28a9","toSide":"bottom"},
+		{"id":"a8c7304a0270b3b1","fromNode":"46b57e7195762bc9","fromSide":"bottom","toNode":"9c72b9eeb58a28a9","toSide":"top"},
+		{"id":"b9d4638a3077bd60","fromNode":"6dd613ce4450e9f9","fromSide":"right","toNode":"30c7554edcbd946f","toSide":"left"},
+		{"id":"4c8028a1f207e99b","fromNode":"78b10f173e1a2ffd","fromSide":"right","toNode":"30c7554edcbd946f","toSide":"left","label":"cables"},
+		{"id":"ff5f20d8bbf741d9","fromNode":"0829a089456e4a4c","fromSide":"right","toNode":"30c7554edcbd946f","toSide":"left"},
+		{"id":"3656d3ba9ae4d113","fromNode":"30c7554edcbd946f","fromSide":"right","toNode":"46b57e7195762bc9","toSide":"left","fromEnd":"arrow"},
+		{"id":"441ec8ab7849c01c","fromNode":"fe5df8b2dca8f87b","fromSide":"top","toNode":"338098151278a742","toSide":"bottom"}
+	]
+}
