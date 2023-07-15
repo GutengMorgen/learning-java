@@ -6,10 +6,6 @@ Memory management at the hardware level is concerned with the physical component
 The MMU also includes a section of memory that holds a table that matches virtual addresses to physical addresses, called the translation lookaside buffer (TLB).
 TLB
 
-Paging and Page Tables
-Memory Allocation Algorithms
-
-
 # Physical Address
 A physical address is the actual address in main memory where data is stored. *It is a location in physical memory such as RAM, ROM, SSD, or hard drive.* **Physical addresses are used by the memory management unit (MMU)** to translate logical addresses into physical addresses.
 
@@ -39,7 +35,11 @@ In other words, **the logical address is a specific address value that identifie
 ![figure 1](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F93%2F1e%2F40%2F931e4024c754d456a1e88b98d0066549.png&f=1&nofb=1&ipt=0d5522be2620b053785f58322fa13d74e3e4b7d6edd043ef884a40f67e8aefd6&ipo=images)
 
 # Address Spaces
-Address space is the amount of memory allocated for all possible addresses for a computational entity like a device, a file, a server or a networked computer. The system provides each device and process address space that holds a specific portion of the processor's address space. This can include either physical or virtual addresses accessible to a processor or reserved for a particular process.
+address space refers to **the range of valid memory addresses available to a program or process.** The number of bytes that can be addressed is determined by the size of the address space, and **each memory address in a system refers to a specific byte of memory**. The size of a byte (8 bits) is fixed and does not change based on the address space of a system.
+
+The size of an address space refers to the total number of unique addresses that can be referenced by a system or process. **The size of an address space is determined by the computer architecture being used and the number of bits used for addressing.**
+
+In the context of physical memory, the address space represents the range of memory addresses that can be accessed by the system. For example, in a 32-bit system, the address space is 2^32, which means there are 2^32 unique memory addresses. **Since each memory address refers to a single byte, the maximum number of bytes that can be addressed in a 32-bit system is also 2^32 bytes.**
 
 # Address Translation
 

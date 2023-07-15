@@ -55,7 +55,8 @@ The memory management function keeps track of the status of each memory location
 ## Memory Management in Cloud Environments
 
 
-
+# What?
+- como usan los procesos la memoria para ejecutarse?
 
 
 # Resouces
@@ -64,34 +65,3 @@ The memory management function keeps track of the status of each memory location
 
 
 
-
-
-
-## Static and dynamic loading
-
-## Static and dynamic linking
-
-## Memory management techniques
-### Single contiguous allocation
-
-### Partitioned Allocation
-
-### Paged Memory Management
-
-### Segmented Memory Management
-
-## Rollout/rollin
-
-## Paging and Page Tables
-
-## Swapping and Page Replacement Algorithms
-
-## Memory Protection
-
-## Fragmentation
-
-## Memory Allocation Algorithms
-
-## NUMA (Non-Uniform Memory Access)
-
-## Memory Ballooning and Dynamic Memory Management

@@ -6,7 +6,7 @@ The implementation of bits is different in [[Main Memory or RAM|main memory]] an
 **Information stored in binary form does not change when it is copied from one medium to another.**
 
 # Bytes
-One bit of information is so little that usually computer memory is organized into groups of eight bits. Each eight bit group is called a **byte**.
+One bit of information is so little that **usually computer memory is organized into groups of eight bits.** Each eight bit group is called a **byte**.
 
 **One byte is about enough memory to hold a single character.** When more than eight bits are required for some data, several of bytes are used. Typically, **four bytes are used to represent integers.**
 
@@ -28,3 +28,11 @@ The Word is the smallest unit of the memory. It is the collection of bytes. Ever
 Data is transferred to and from memory in groups of bits called words. A word can be a group of 8 bits, 16 bits, 32 bits or 64 bits (and growing). •If the word is 8 bits, it is referred to as a byte. The term “byte” is so common in computer science that sometimes a 16-bit word is referred to as a 2-byte word, or a 32-bit word is referred to as a 4-byte word.
 
 To access a word in memory requires an identifier. Although programmers use a name to identify a word (or a collection of words), at the hardware level each word is identified by an address. •The total number of uniquely identifiable locations in memory is called the address space. •For example, a memory with 64 kilobytes (16 address line required) and a word size of 1 byte has an address space that ranges from 0 to 65,535
+
+# Resources
+- [web.stanford.edu](https://web.stanford.edu/class/cs101/bits-bytes.html)
+- [superuser](https://superuser.com/questions/593847/how-many-memory-addresses-can-we-get-with-a-32-bit-processor-and-1gb-ram)
+- [log2base2](https://www.log2base2.com/C/pointer/computer-memory-address-basics.html)
+- [computer.howstuffworks](https://computer.howstuffworks.com/c23.htm)
+- [diveintosystems](https://diveintosystems.org/book/C13-OS/vm.html#_memory_addresses)
+- 
