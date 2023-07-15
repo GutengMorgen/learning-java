@@ -9,6 +9,8 @@ The memory management function keeps track of the status of each memory location
 	- [[Memory Management Unit#Logical Address (Virtual Address)|Virtual Address]]
 	- [[Memory Management Unit#Address Spaces|Address Spaces]]
 
+[wikipedia - virtual memory](https://en.wikipedia.org/wiki/Virtual_memory)
+
 ## Static and dynamic loading
 
 
